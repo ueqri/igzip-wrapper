@@ -1,4 +1,6 @@
 #include "igzip_wrapper.h"
+/* Normally you use isa-l.h instead for external programs */
+#include "isa-l/igzip_lib.h"
 
 #ifdef __cplusplus
 extern "C"

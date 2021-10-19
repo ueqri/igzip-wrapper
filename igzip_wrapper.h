@@ -13,7 +13,6 @@
 #include <unistd.h>
 #include <stdbool.h>
 #include <stdarg.h>
-#include "isa-l/igzip_lib.h"		/* Normally you use isa-l.h instead for external programs */
 
 #ifdef __cplusplus
 extern "C"
