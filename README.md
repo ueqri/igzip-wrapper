@@ -21,6 +21,8 @@ int decompress_file(const char *infile_name, unsigned char *output_string, size_
 int compress_file(unsigned char *input_string, size_t input_length, const char *outfile_name, int compress_level, int thread_num);
 ```
 
+Current loose coupling structure is easy to customize and add new features like streaming inflate or deflate, feel free to copy paste to adapt it to your design!
+
 ## Build
 
 ### Prerequisites
