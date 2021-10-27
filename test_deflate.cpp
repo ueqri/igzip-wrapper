@@ -6,7 +6,7 @@
 #include <thread>
 
 #define READ_BUF_ONCE 1024 * 1024
-#define BUFFER_SIZE 1ll << 35
+#define BUFFER_SIZE 1ll << 31 // maximum 2GiB to store intermediate buffer
 
 void load(FILE *fp, unsigned char *dst, size_t *length) {
   size_t read;
@@ -40,13 +40,17 @@ int main(int argc, char *argv[]) {
   std::chrono::steady_clock::time_point begin =
       std::chrono::steady_clock::now();
 
+#ifdef HAVE_THREADS
   // max compress level is 3, max thread nums is 8
   compress_file(src, src_len, argv[2], 3, 8);
+#else
+  compress_file(src, src_len, argv[2], 3, 1);
+#endif
 
   std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
 
   std::cout
-      << "Compression elapse :"
+      << "Compression elapse = "
       << std::chrono::duration_cast<std::chrono::seconds>(end - begin).count()
       << "s" << std::endl;
 

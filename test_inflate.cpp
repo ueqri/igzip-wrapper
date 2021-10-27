@@ -7,7 +7,7 @@
 
 #define COMPARE_BLOCK 1024 * 1024
 #define READ_BUF_ONCE COMPARE_BLOCK
-#define BUFFER_SIZE 1ll << 35
+#define BUFFER_SIZE 1ll << 31 // maximum 2GiB to store intermediate buffer
 
 void loadCheckBuffer(FILE *fp, unsigned char *check, size_t *length) {
   size_t read;
@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
   std::cout
       << "Decompression elapse = "
       << std::chrono::duration_cast<std::chrono::seconds>(end - begin).count()
-      << "[s]" << std::endl;
+      << "s" << std::endl;
 
   readCheckBuffer.join();
 
